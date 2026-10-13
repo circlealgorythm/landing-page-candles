@@ -41,3 +41,12 @@ For UI changes, also run `npm run dev` and check the page at `http://localhost:3
 If `npm run typecheck` reports missing `.next/types` files, generate fresh Next.js artifacts with `npm run dev` or `npm run build`, then retry the typecheck.
 
 Before handing work off, review `git diff` and `git status`; report the changed files and any checks that could not be run.
+
+## Modal and Mobile Scroll Invariants
+
+- При открытии модалок (`role="dialog"`, форма заявки в `pricing-section.tsx`, лайтбокс в `testimonials-section.tsx`):
+  - **Блокировка фона:** `document.body.style.overflow = "hidden"`, `document.documentElement.style.overflow = "hidden"`, `document.body.style.touchAction = "none"`, `main.setAttribute("inert", "")`.
+  - **Защита от touch-скролла на iOS/Android:** активный слушатель `touchmove` (`{ passive: false }`) с вызовом `e.preventDefault()`, если жест совершен вне скроллируемой области (`!target?.closest("[data-modal-scrollable]")`).
+  - **Карточка формы:** `max-h-[min(90dvh,44rem)] overflow-y-auto overscroll-contain touch-pan-y` — скроллится строго внутри себя при нехватке высоты, никогда не передавая импульс скролла родительскому документу.
+  - **Оверлей:** `fixed inset-0 overflow-hidden touch-none overscroll-contain`.
+

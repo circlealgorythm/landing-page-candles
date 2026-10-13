@@ -33,8 +33,13 @@ export function PricingSection() {
   useEffect(() => {
     if (!isModalOpen) return;
 
-    const originalOverflow = document.body.style.overflow;
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalBodyTouchAction = document.body.style.touchAction;
+
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
 
     const mainEl = document.querySelector("main");
     if (mainEl) {
@@ -47,14 +52,26 @@ export function PricingSection() {
       }
     };
 
+    // Блокируем скролл фона на мобильных (iOS/Android) при свайпах вне модальной формы
+    const handleTouchMove = (e: TouchEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target?.closest("[data-modal-scrollable]")) {
+        e.preventDefault();
+      }
+    };
+
     window.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     return () => {
-      document.body.style.overflow = originalOverflow;
+      document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.touchAction = originalBodyTouchAction;
       if (mainEl) {
         mainEl.removeAttribute("inert");
       }
       window.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("touchmove", handleTouchMove);
     };
   }, [isModalOpen]);
 
@@ -253,10 +270,21 @@ export function PricingSection() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="payment-modal-title"
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-3 sm:p-6 backdrop-blur-md animate-fadeIn overflow-y-auto"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setIsSubmitting(false);
+              setIsModalOpen(false);
+            }
+          }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-3 sm:p-6 backdrop-blur-md animate-fadeIn overflow-hidden overscroll-contain touch-none"
         >
           <div
-            className="mystic-panel relative w-full max-w-lg overflow-hidden rounded-2xl border border-orange-200/30 bg-[linear-gradient(180deg,rgba(26,24,37,0.98),rgba(14,14,23,0.98))] p-6 sm:p-9 shadow-[0_30px_90px_rgba(0,0,0,0.95),0_0_60px_rgba(251,146,60,0.18)] my-auto text-white backdrop-blur-2xl"
+            data-modal-scrollable="true"
+            className="mystic-panel relative w-full max-w-lg max-h-[min(90dvh,44rem)] overflow-y-auto overscroll-contain rounded-2xl border border-orange-200/30 bg-[linear-gradient(180deg,rgba(26,24,37,0.98),rgba(14,14,23,0.98))] p-5 sm:p-8 md:p-9 shadow-[0_30px_90px_rgba(0,0,0,0.95),0_0_60px_rgba(251,146,60,0.18)] my-auto text-white backdrop-blur-2xl touch-pan-y"
+            style={{
+              scrollbarWidth: "thin",
+              scrollbarColor: "rgba(255, 141, 44, 0.38) transparent",
+            }}
           >
             {/* Top Ambient Glow */}
             <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-orange-300/12 via-amber-500/5 to-transparent pointer-events-none" />
@@ -269,7 +297,7 @@ export function PricingSection() {
                 setIsModalOpen(false);
               }}
               aria-label="Закрыть окно"
-              className="group absolute right-4 top-4 sm:right-6 sm:top-6 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-stone-400 transition-all hover:border-orange-300/40 hover:bg-white/15 hover:text-white"
+              className="group absolute right-3.5 top-3.5 sm:right-6 sm:top-6 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-stone-400 transition-all hover:border-orange-300/40 hover:bg-white/15 hover:text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
