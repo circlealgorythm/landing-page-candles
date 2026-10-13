@@ -11,53 +11,42 @@ type RevealProps = Readonly<{
 }>;
 
 export function Reveal({ children, className, delay = 0 }: RevealProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [isReady, setIsReady] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const element = ref.current;
-
-    if (!element) {
-      return undefined;
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const isInitiallyVisible = element.getBoundingClientRect().top <= window.innerHeight * 0.9;
-
-    if (mediaQuery.matches || isInitiallyVisible) {
+    // If reduced motion is preferred, immediately show
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setIsVisible(true);
+      return;
     }
 
-    const frame = window.requestAnimationFrame(() => {
-      setIsReady(true);
-    });
+    const element = ref.current;
+    if (!element) return;
 
-    if (mediaQuery.matches || isInitiallyVisible) {
-      return () => {
-        window.cancelAnimationFrame(frame);
-      };
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
     }
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const [entry] = entries;
-
-        if (entry?.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
       },
       {
-        threshold: 0.2,
-        rootMargin: "0px 0px -8% 0px"
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
       }
     );
 
     observer.observe(element);
 
     return () => {
-      window.cancelAnimationFrame(frame);
       observer.disconnect();
     };
   }, []);
@@ -65,12 +54,12 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
   return (
     <div
       ref={ref}
-      className={cn("motion-reveal", className)}
-      data-ready={isReady ? "true" : "false"}
-      data-visible={isVisible ? "true" : "false"}
-      style={{ transitionDelay: `${delay}ms` }}
+      data-visible={isVisible}
+      style={delay > 0 && isVisible ? { transitionDelay: `${delay}ms` } : undefined}
+      className={cn("motion-reveal w-full", className)}
     >
       {children}
     </div>
   );
 }
+

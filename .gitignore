@@ -27,3 +27,7 @@ pnpm-debug.log*
 
 # typescript
 *.tsbuildinfo
+
+# archives & test files
+*.zip
+test_order.json

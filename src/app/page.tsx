@@ -1,10 +1,10 @@
 import {
   AboutSection,
+  FaqSection,
   FooterSection,
   HeroSection,
   PricingSection,
   ProgramSection,
-  QuestionsSection,
   TestimonialsSection,
   UniquenessSection
 } from "@/components/sections";
@@ -12,14 +12,14 @@ import {
 export default function HomePage() {
   return (
     <>
-      <main className="relative flex-1">
+      <main className="relative flex-1 w-full max-w-full overflow-x-clip">
         <HeroSection />
         <UniquenessSection />
         <ProgramSection />
         <AboutSection />
         <PricingSection />
         <TestimonialsSection />
-        <QuestionsSection />
+        <FaqSection />
       </main>
       <FooterSection />
     </>

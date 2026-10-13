@@ -22,14 +22,14 @@ export function SectionHeading({
           {eyebrow}
         </p>
       ) : null}
-      <div className="space-y-4">
-        <h2 id={id} className="font-display text-4xl font-semibold tracking-[-0.04em] text-[rgba(255,238,220,0.98)] sm:text-5xl lg:text-6xl">
+      <div className="space-y-3 sm:space-y-4">
+        <h2 id={id} className="font-display text-3xl font-semibold tracking-[-0.03em] text-[rgba(255,238,220,0.98)] sm:text-4xl md:text-5xl lg:text-6xl">
           {title}
         </h2>
         {description ? (
           <p
             className={cn(
-              "max-w-3xl text-base leading-8 text-[rgba(201,206,226,0.84)] sm:text-lg",
+              "max-w-3xl text-sm leading-7 text-[rgba(201,206,226,0.84)] sm:text-base sm:leading-8 lg:text-lg",
               align === "center" && "mx-auto"
             )}
           >

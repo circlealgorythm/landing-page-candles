@@ -1,11 +1,14 @@
+import { CookieBanner } from "./cookie-banner";
+import { FlameBorders } from "./flame-borders";
+
 type SiteShellProps = Readonly<{
   children: React.ReactNode;
 }>;
 
 export function SiteShell({ children }: SiteShellProps) {
   return (
-    <div className="relative flex min-h-screen flex-col overflow-hidden bg-background">
-      <div aria-hidden className="pointer-events-none absolute inset-0">
+    <div className="relative flex min-h-screen flex-col overflow-x-clip w-full max-w-full bg-background overscroll-x-none">
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="section-dust opacity-60" />
         <div className="absolute inset-x-0 top-0 h-[40rem] bg-[radial-gradient(circle_at_top,rgba(255,190,120,0.22),transparent_44%)]" />
         <div className="absolute left-[-9rem] top-[26rem] h-80 w-80 rounded-full bg-[rgba(255,141,49,0.16)] blur-3xl" />
@@ -15,7 +18,9 @@ export function SiteShell({ children }: SiteShellProps) {
         <div className="ritual-ring left-1/2 top-24 h-[26rem] w-[26rem] -translate-x-1/2 opacity-35" />
         <div className="absolute inset-x-0 bottom-0 h-[30rem] bg-[linear-gradient(180deg,transparent,rgba(6,8,16,0.92))]" />
       </div>
-      <div className="relative z-10 flex min-h-screen flex-col">{children}</div>
+      <FlameBorders />
+      <div className="relative z-10 flex min-h-screen flex-col w-full max-w-full overflow-x-clip">{children}</div>
+      <CookieBanner />
     </div>
   );
 }

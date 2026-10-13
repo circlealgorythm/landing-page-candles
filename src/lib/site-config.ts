@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Candles Landing",
-  description: "Базовый каркас для лендинга на Next.js с app router и Tailwind CSS.",
-  url: "https://example.com"
+  name: "Сайт Свечи - жезлы",
+  description: "Онлайн-курс по Свечам - жезлам: тонкоплановые практики и духовные знания.",
+  url: "https://candles.aisukam.ru"
 } as const;

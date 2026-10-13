@@ -4,7 +4,8 @@
   --border: 22 35% 24%;
   --muted: 236 27% 12%;
   --muted-foreground: 218 30% 73%;
-  --radius: 1.75rem;
+  --radius: 1.25rem;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --font-display: "Palatino Linotype", "Book Antiqua", Georgia, serif;
   --surface-strong: 233 28% 11%;
   --surface-soft: 235 22% 14%;
