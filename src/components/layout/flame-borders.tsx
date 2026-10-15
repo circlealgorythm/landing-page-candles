@@ -94,10 +94,10 @@ void main() {
   color = mix(color, colGold, smoothstep(0.38, 0.72, flame));
   color = mix(color, colCore, smoothstep(0.72, 1.0, flame));
 
-  // Чистый аддитивный свет пламени — никогда не затемняет фон и не создает черных артефактов
+  // Premultiplied alpha keeps the transparent WebGL canvas compositing correctly on mobile GPUs.
   float intensity = flame * flameMask * 0.25;
 
-  gl_FragColor = vec4(color * intensity, 0.0);
+  gl_FragColor = vec4(color * intensity, intensity);
 }
 `;
 
