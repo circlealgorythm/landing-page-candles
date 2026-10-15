@@ -283,7 +283,6 @@ export function TestimonialsSection() {
                         fill
                         unoptimized
                         sizes="(max-width: 640px) 84vw, (max-width: 1024px) 360px, 400px"
-                        priority={index < 2}
                         className="object-contain object-center p-2 transition-transform duration-500 group-hover:scale-[1.02]"
                       />
 
