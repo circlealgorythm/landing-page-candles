@@ -51,7 +51,6 @@ export function HeroSection() {
       <div aria-hidden className="absolute right-[10%] top-[12%] hidden h-[35rem] w-[35rem] rounded-full bg-[radial-gradient(circle,rgba(255,150,74,0.16)_0%,rgba(255,150,74,0.08)_26%,rgba(255,150,74,0.02)_52%,transparent_72%)] blur-[56px] lg:block" />
       <div aria-hidden className="absolute bottom-[8%] right-[8%] hidden h-44 w-44 rounded-full bg-[radial-gradient(circle,rgba(255,162,88,0.3)_0%,rgba(255,162,88,0.12)_32%,transparent_70%)] blur-[28px] lg:block" />
       <div aria-hidden className="absolute inset-x-0 top-0 h-full bg-[linear-gradient(180deg,rgba(8,9,18,0.22),transparent_24%,transparent_78%,rgba(8,9,18,0.28))]" />
-      <div aria-hidden className="absolute inset-y-0 right-0 w-full bg-[linear-gradient(90deg,rgba(9,10,19,0.04)_0%,rgba(9,10,19,0.12)_34%,rgba(9,10,19,0.55)_52%,rgba(9,10,19,0.88)_68%,rgba(9,10,19,1)_100%)] opacity-80 sm:opacity-0 lg:hidden" />
       <div aria-hidden className="absolute bottom-0 right-0 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(255,149,72,0.14)_0%,rgba(255,149,72,0.04)_34%,transparent_70%)] blur-[48px] sm:hidden" />
       <Container className="relative z-10 grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
         <Reveal className="space-y-8 sm:space-y-10">

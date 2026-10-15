@@ -49,8 +49,8 @@ void main() {
   float dRight = 1.0 - uv.x;
   float sideDist = min(dLeft, dRight);
 
-  // Боковая зона огня: 20% ширины экрана с каждого края. Центр экрана 100% свободен.
-  float maxReach = 0.20;
+  // Боковая зона огня: 12% на мобильных, 20% на десктопе. Центр экрана 100% свободен.
+  float maxReach = u_resolution.x < 768.0 ? 0.12 : 0.20;
   if (sideDist > maxReach) {
     gl_FragColor = vec4(0.0);
     return;
@@ -94,10 +94,10 @@ void main() {
   color = mix(color, colGold, smoothstep(0.38, 0.72, flame));
   color = mix(color, colCore, smoothstep(0.72, 1.0, flame));
 
-  // Очень деликатная, ненавязчивая прозрачность
-  float alpha = flame * flameMask * 0.22;
+  // Чистый аддитивный свет пламени — никогда не затемняет фон и не создает черных артефактов
+  float intensity = flame * flameMask * 0.25;
 
-  gl_FragColor = vec4(color * alpha, alpha);
+  gl_FragColor = vec4(color * intensity, 0.0);
 }
 `;
 
@@ -217,7 +217,7 @@ export function FlameBorders() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-20 h-full w-full select-none"
+      className="pointer-events-none fixed inset-0 z-0 h-full w-full select-none"
     />
   );
 }

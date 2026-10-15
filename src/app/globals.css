@@ -137,6 +137,8 @@
       0 26px 80px rgba(6, 7, 20, 0.38),
       inset 0 1px 0 rgba(255, 242, 223, 0.08);
     backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    -webkit-backface-visibility: hidden;
   }
 
   .mystic-panel::before {
@@ -174,6 +176,8 @@
     text-transform: uppercase;
     color: rgba(227, 235, 255, 0.76);
     backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    -webkit-backface-visibility: hidden;
   }
 
   .mystic-badge::before {
