@@ -85,17 +85,8 @@
 
 @layer components {
   .motion-reveal {
-    opacity: 0;
-    transform: translate3d(0, 18px, 0);
-    transition:
-      opacity 450ms cubic-bezier(0.23, 1, 0.32, 1),
-      transform 450ms cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: opacity, transform;
-  }
-
-  .motion-reveal[data-visible="true"] {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: none;
   }
 
   .motion-card {
@@ -250,17 +241,9 @@
       scroll-behavior: auto;
     }
 
-    .motion-reveal,
     .motion-card,
     .button-glow::after {
       transition: none;
-    }
-
-    .motion-reveal[data-ready="true"][data-visible="false"],
-    .motion-reveal[data-ready="true"][data-visible="true"] {
-      opacity: 1;
-      transform: none;
-      filter: none;
     }
 
     .motion-card:hover {
