@@ -30,7 +30,7 @@ export function HeroSection() {
         className="absolute inset-0 hidden lg:block"
         style={{
           backgroundImage:
-            "linear-gradient(90deg, rgba(7,9,18,0.98) 0%, rgba(7,9,18,0.96) 18%, rgba(7,9,18,0.84) 34%, rgba(7,9,18,0.54) 52%, rgba(7,9,18,0.24) 70%, rgba(7,9,18,0.16) 100%), linear-gradient(180deg, rgba(6,8,18,0.5), rgba(6,8,18,0.16) 32%, rgba(6,8,18,0.38) 100%), url('/images/candles-study.png')",
+            "linear-gradient(90deg, rgba(7,9,18,0.98) 0%, rgba(7,9,18,0.96) 18%, rgba(7,9,18,0.84) 34%, rgba(7,9,18,0.54) 52%, rgba(7,9,18,0.24) 70%, rgba(7,9,18,0.16) 100%), linear-gradient(180deg, rgba(6,8,18,0.5), rgba(6,8,18,0.16) 32%, rgba(6,8,18,0.38) 100%), url('/images/candles-study.webp')",
           backgroundPosition: "center, center, center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "100% 100%, 100% 100%, cover",
@@ -104,7 +104,7 @@ export function HeroSection() {
               <div className="float-right mb-3 ml-4 flex items-center justify-center sm:mb-4 sm:ml-6">
                 <div aria-hidden className="absolute h-16 w-16 rounded-full bg-[radial-gradient(circle,rgba(255,185,100,0.22)_0%,rgba(255,142,50,0.06)_42%,transparent_70%)] blur-lg sm:h-24 sm:w-24" />
                 <Image
-                  src="/images/brand-logo.png"
+                  src="/images/brand-logo.webp"
                   alt="Фирменное лого"
                   width={88}
                   height={88}

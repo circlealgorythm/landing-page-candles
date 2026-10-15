@@ -109,37 +109,37 @@ export const pricingPlans = [
 export const reviewScreenshots = [
   {
     id: 1,
-    src: "/images/reviews/1.jpg",
+    src: "/images/reviews/1.webp",
     alt: "Отзыв после практики 1",
     title: "Отзыв 1"
   },
   {
     id: 2,
-    src: "/images/reviews/2.jpg",
+    src: "/images/reviews/2.webp",
     alt: "Отзыв после практики 2",
     title: "Отзыв 2"
   },
   {
     id: 3,
-    src: "/images/reviews/3.jpg",
+    src: "/images/reviews/3.webp",
     alt: "Отзыв после практики 3",
     title: "Отзыв 3"
   },
   {
     id: 4,
-    src: "/images/reviews/4.jpg",
+    src: "/images/reviews/4.webp",
     alt: "Отзыв после практики 4",
     title: "Отзыв 4"
   },
   {
     id: 5,
-    src: "/images/reviews/5.jpg",
+    src: "/images/reviews/5.webp",
     alt: "Отзыв после практики 5",
     title: "Отзыв 5"
   },
   {
     id: 6,
-    src: "/images/reviews/6.jpg",
+    src: "/images/reviews/6.webp",
     alt: "Отзыв после практики 6",
     title: "Отзыв 6"
   }

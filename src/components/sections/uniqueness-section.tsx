@@ -10,7 +10,7 @@ export function UniquenessSection() {
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(90deg, rgba(8,10,20,0.98) 0%, rgba(8,10,20,0.96) 18%, rgba(8,10,20,0.84) 34%, rgba(8,10,20,0.56) 52%, rgba(8,10,20,0.24) 70%, rgba(8,10,20,0.14) 100%), linear-gradient(180deg, rgba(7,9,18,0.34), rgba(7,9,18,0.12) 28%, rgba(7,9,18,0.36) 100%), url('/images/2.png')",
+            "linear-gradient(90deg, rgba(8,10,20,0.98) 0%, rgba(8,10,20,0.96) 18%, rgba(8,10,20,0.84) 34%, rgba(8,10,20,0.56) 52%, rgba(8,10,20,0.24) 70%, rgba(8,10,20,0.14) 100%), linear-gradient(180deg, rgba(7,9,18,0.34), rgba(7,9,18,0.12) 28%, rgba(7,9,18,0.36) 100%), url('/images/2.webp')",
           backgroundPosition: "center, center, center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "100% 100%, 100% 100%, cover",

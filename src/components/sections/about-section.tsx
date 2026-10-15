@@ -52,7 +52,7 @@ export function AboutSection() {
 
                 <div className="absolute inset-x-[-4%] bottom-[-2%] top-[2%] sm:inset-x-[-2%] lg:inset-x-[-8%] lg:bottom-[-4%]">
                   <Image
-                    src="/images/author3-about.png"
+                    src="/images/author3-about.webp"
                     alt="Айсу Кам, практик и преподаватель по работе со свечами - жезлами"
                     fill
                     sizes="(min-width: 1024px) 42vw, (min-width: 640px) 60vw, 90vw"
