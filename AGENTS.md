@@ -1,8 +1,11 @@
-# Project Guide
+# Project Guide: Landing Candles («Свечная магия»)
 
-## Purpose and stack
+> **Экосистема:** Школа AisuKam (`candles.aisukam.ru`)  
+> **Стек:** Next.js 14 App Router, React 18, TypeScript, Tailwind CSS, ESLint, npm  
+> **Сквозные стандарты школы:** Перед реализацией общих UI/UX (модалки, скроллбары) или аналитики сверяться с [.harness/lessons.md](file:///./.harness/lessons.md).  
+> **Локальный журнал прогресса:** [progress.md](file:///./projects/landing-candles/progress.md)
 
-This repository is a Russian-language course landing page built with Next.js 14 App Router, React 18, TypeScript, Tailwind CSS, and ESLint. Use npm and Node.js 18.17 or newer.
+---
 
 ## Code map
 
