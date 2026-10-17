@@ -57,7 +57,7 @@ export function AboutSection() {
                     fill
                     sizes="(min-width: 1024px) 42vw, (min-width: 640px) 60vw, 90vw"
                     className="object-contain object-center lg:object-[72%_center] brightness-[0.97] contrast-[1.01] saturate-[0.9] [filter:drop-shadow(0_18px_54px_rgba(10,18,34,0.18))_drop-shadow(0_0_34px_rgba(255,147,68,0.18))]"
-                    priority={false}
+                    priority
                   />
                 </div>
               </div>

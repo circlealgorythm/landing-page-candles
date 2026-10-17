@@ -177,14 +177,28 @@ export function FlameBorders() {
     window.addEventListener("resize", handleResize, { passive: true });
 
     let isTabVisible = !document.hidden;
+    let isScrolling = false;
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    const handleScroll = () => {
+      isScrolling = true;
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isScrolling = false;
+      }, 100);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     const render = () => {
       if (!isTabVisible) return;
-      const elapsed = (performance.now() - startTime) / 1000;
-      gl.uniform1f(timeLoc, elapsed);
-      gl.clearColor(0, 0, 0, 0);
-      gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      if (!isScrolling) {
+        const elapsed = (performance.now() - startTime) / 1000;
+        gl.uniform1f(timeLoc, elapsed);
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+      }
 
       if (!isReducedMotion) {
         animationFrameId = requestAnimationFrame(render);
@@ -204,7 +218,9 @@ export function FlameBorders() {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       gl.deleteProgram(program);
       gl.deleteShader(vertShader);

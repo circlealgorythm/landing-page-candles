@@ -94,7 +94,7 @@ export function HeroSection() {
           </div>
         </Reveal>
 
-        <Reveal className="relative" delay={120}>
+        <Reveal className="relative">
           <div className="absolute inset-0 translate-y-6 rounded-2xl bg-[radial-gradient(circle_at_top,rgba(255,167,92,0.2),transparent_58%)] blur-3xl" />
           <article className="motion-card mystic-panel relative rounded-2xl p-5 sm:p-7">
             <div aria-hidden className="ritual-ring bottom-8 left-6 h-20 w-20 opacity-30" />

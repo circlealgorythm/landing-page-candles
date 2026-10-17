@@ -54,3 +54,5 @@
 - **2026-10-15 15:30** | fix(candles): Fix mobile WebGL flame compositing (commit dc06c19)
 
 - **2026-10-16 23:01** | docs(candles): add context bridge and seed progress.md
+
+- **2026-10-17 13:44** | perf(candles): eliminate scroll delay and optimize mobile GPU compositing

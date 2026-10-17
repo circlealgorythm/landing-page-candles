@@ -234,7 +234,7 @@ export function TestimonialsSection() {
                     role="button"
                     tabIndex={0}
                     aria-label={`Открыть отзыв № ${index + 1} в полном размере`}
-                    className="group relative flex flex-col justify-between h-[490px] sm:h-[530px] md:h-[560px] overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-3.5 sm:p-4 md:p-5 shadow-[0_20px_60px_rgba(6,7,20,0.35)] backdrop-blur-xl transition-[border-color,box-shadow,transform] duration-200 hover:border-orange-300/40 hover:shadow-[0_0_30px_rgba(255,145,58,0.18)] focus:outline-none focus:ring-2 focus:ring-orange-400/50 cursor-zoom-in"
+                    className="group relative flex flex-col justify-between h-[490px] sm:h-[530px] md:h-[560px] overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(25,23,37,0.95),rgba(15,14,25,0.98))] p-3.5 sm:p-4 md:p-5 shadow-[0_20px_60px_rgba(6,7,20,0.35)] transition-[border-color,box-shadow,transform] duration-200 hover:border-orange-300/40 hover:shadow-[0_0_30px_rgba(255,145,58,0.18)] focus:outline-none focus:ring-2 focus:ring-orange-400/50 cursor-zoom-in"
                   >
                     {/* Card Top Bar with Flame Icon and Zoom Button */}
                     <div className="flex items-center justify-between pb-2 text-xs">
@@ -282,6 +282,7 @@ export function TestimonialsSection() {
                         alt={review.alt}
                         fill
                         unoptimized
+                        priority={index < 2}
                         sizes="(max-width: 640px) 84vw, (max-width: 1024px) 360px, 400px"
                         className="object-contain object-center p-2 transition-transform duration-500 group-hover:scale-[1.02]"
                       />

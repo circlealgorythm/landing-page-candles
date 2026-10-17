@@ -84,24 +84,24 @@
 }
 
 @layer components {
-  .motion-reveal {
-    opacity: 1;
-    transform: none;
-  }
-
   .motion-card {
-    transform: translateZ(0);
     transition:
-      transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 280ms ease,
-      background-color 280ms ease,
-      box-shadow 280ms ease;
-    will-change: transform;
+      border-color 200ms ease,
+      background-color 200ms ease,
+      box-shadow 200ms ease;
   }
 
   @media (hover: hover) and (pointer: fine) {
+    .motion-card {
+      transition:
+        transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 200ms ease,
+        background-color 200ms ease,
+        box-shadow 200ms ease;
+    }
+
     .motion-card:hover {
-      transform: translate3d(0, -8px, 0);
+      transform: translate3d(0, -6px, 0);
     }
   }
 
@@ -131,14 +131,18 @@
     overflow: hidden;
     border: 1px solid rgba(255, 207, 156, 0.16);
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)),
-      linear-gradient(135deg, rgba(255, 155, 77, 0.08), rgba(88, 145, 224, 0.04) 55%, rgba(255, 255, 255, 0.02));
+      linear-gradient(180deg, rgba(25, 23, 36, 0.94), rgba(15, 14, 24, 0.96)),
+      linear-gradient(135deg, rgba(255, 155, 77, 0.06), rgba(88, 145, 224, 0.03) 55%, transparent);
     box-shadow:
       0 26px 80px rgba(6, 7, 20, 0.38),
       inset 0 1px 0 rgba(255, 242, 223, 0.08);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    -webkit-backface-visibility: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .mystic-panel {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
   }
 
   .mystic-panel::before {
@@ -157,8 +161,7 @@
     height: 12rem;
     width: 14rem;
     border-radius: 9999px;
-    background: radial-gradient(circle, rgba(255, 168, 92, 0.2), transparent 72%);
-    filter: blur(18px);
+    background: radial-gradient(circle, rgba(255, 168, 92, 0.16), transparent 70%);
     pointer-events: none;
   }
 
@@ -168,16 +171,20 @@
     gap: 0.65rem;
     border-radius: 9999px;
     border: 1px solid rgba(255, 214, 167, 0.18);
-    background: linear-gradient(180deg, rgba(255, 239, 219, 0.08), rgba(255, 255, 255, 0.03));
+    background: linear-gradient(180deg, rgba(32, 28, 44, 0.92), rgba(20, 18, 30, 0.96));
     padding: 0.45rem 1rem;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: rgba(227, 235, 255, 0.76);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    -webkit-backface-visibility: hidden;
+    color: rgba(227, 235, 255, 0.88);
+  }
+
+  @media (min-width: 768px) {
+    .mystic-badge {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
   }
 
   .mystic-badge::before {
@@ -319,68 +326,3 @@
     cursor: not-allowed !important;
   }
 }
-
-/* Анимации шелковых огненных волн по бокам */
-@keyframes flame-drift-1 {
-  0% {
-    transform: translate3d(0, 0, 0) scaleX(1);
-  }
-  35% {
-    transform: translate3d(-4%, -2%, 0) scaleX(1.08);
-  }
-  70% {
-    transform: translate3d(3%, -4%, 0) scaleX(0.94);
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scaleX(1);
-  }
-}
-
-@keyframes flame-drift-2 {
-  0% {
-    transform: translate3d(0, 0, 0) scaleX(1);
-  }
-  40% {
-    transform: translate3d(4%, -3%, 0) scaleX(1.06);
-  }
-  75% {
-    transform: translate3d(-3%, -1.5%, 0) scaleX(0.95);
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scaleX(1);
-  }
-}
-
-@keyframes flame-pulse {
-  0%,
-  100% {
-    opacity: 0.38;
-    filter: blur(28px);
-  }
-  50% {
-    opacity: 0.65;
-    filter: blur(20px);
-  }
-}
-
-@keyframes ember-rise {
-  0% {
-    transform: translate3d(0, 105vh, 0) scale(0.6);
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.85;
-  }
-  80% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translate3d(15px, -8vh, 0) scale(1.1);
-    opacity: 0;
-  }
-}
-
-
-
-
-

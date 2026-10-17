@@ -178,7 +178,7 @@ export function PricingSection() {
 
           {/* Single Expanded Plan Card */}
           <div className="mx-auto w-full max-w-3xl">
-            <article className="motion-card mystic-panel relative overflow-hidden rounded-2xl border border-orange-200/25 bg-[linear-gradient(180deg,rgba(255,186,125,0.12),rgba(255,255,255,0.04)_45%,rgba(124,176,238,0.05))] p-6 shadow-[0_30px_90px_rgba(251,139,36,0.16)] sm:p-10 md:p-12">
+            <article className="motion-card mystic-panel relative overflow-hidden rounded-2xl border border-orange-200/25 bg-[linear-gradient(180deg,rgba(32,27,42,0.96),rgba(18,16,28,0.98))] p-6 shadow-[0_30px_90px_rgba(251,139,36,0.16)] sm:p-10 md:p-12">
               <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-br from-orange-200/15 via-white/5 to-transparent" />
 
               {/* Card Header: Title & Price */}
