@@ -71,8 +71,9 @@ $curlError = curl_error($ch);
 curl_close($ch);
 
 if ($response === false) {
+    error_log("Landing candles order gateway cURL error: {$curlError}");
     http_response_code(500);
-    echo json_encode(['error' => 'Ошибка связи с платежным шлюзом: ' . $curlError]);
+    echo json_encode(['error' => 'Ошибка связи с платежным шлюзом. Пожалуйста, попробуйте позже.']);
     exit;
 }
 

@@ -14,6 +14,16 @@
 
 ## Сессионный журнал подпроекта
 
+### Сессия: 2026-10-26 | Фича 4: Безопасность шлюза заказов и защита от утечки секретов (VULN-06)
+* **Контекст:** Реализация Фичи 4 комплексного плана устранения уязвимостей безопасности онлайн-школы AisuKam по стандартам L4 Meta-Harness.
+* **Первопричина:** При сбое сетевого запроса к GetCourse в \public/api/order/index.php\ в ответ клиенту выводилась необработанная строка \\, раскрывающая детали сетевого окружения. В \.gitignore\ отсутствовали правила для локальных конфигураций.
+* **Выполнено:**
+  1. В \public/api/order/index.php\ добавлено логирование \rror_log()\ и маскирование ответа клиенту обобщенным сообщением.
+  2. В \.gitignore\ добавлены правила \*.local\, \config.php\, \lead-config.php\, \desktop.ini\.
+* **Доказательство (Evidence):**
+  - Синтаксис PHP проверен и валиден.
+  - Сборка и верификация: \pwsh -ExecutionPolicy Bypass -File scripts/verify.ps1 -Subproject landing-candles\ (lint, typecheck, next build SSG) завершилась с кодом 0 за 21.58s.
+
 ### Сессия: 2026-10-13 | UI/UX аудит и оптимизация «Свечная магия»
 * **Цель:** Привести candles.aisukam.ru к стандартам design-taste и modern-web-guidance, сохранив палитру и SVG-курсоры огня, с деплоем на прод.
 * **Выполнено:**
@@ -56,3 +66,5 @@
 - **2026-10-16 23:01** | docs(candles): add context bridge and seed progress.md
 
 - **2026-10-17 13:44** | perf(candles): eliminate scroll delay and optimize mobile GPU compositing
+
+- **2026-10-26 02:17** | security(candles): mask curl error details and add gitignore

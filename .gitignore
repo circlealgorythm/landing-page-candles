@@ -11,6 +11,7 @@
 # misc
 .DS_Store
 *.pem
+desktop.ini
 
 # debug
 npm-debug.log*
@@ -31,3 +32,8 @@ pnpm-debug.log*
 # archives & test files
 *.zip
 test_order.json
+
+# secrets and local config
+*.local
+config.php
+lead-config.php

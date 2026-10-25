@@ -53,3 +53,8 @@ Before handing work off, review `git diff` and `git status`; report the changed 
   - **Карточка формы:** `max-h-[min(90dvh,44rem)] overflow-y-auto overscroll-contain touch-pan-y` — скроллится строго внутри себя при нехватке высоты, никогда не передавая импульс скролла родительскому документу.
   - **Оверлей:** `fixed inset-0 overflow-hidden touch-none overscroll-contain`.
 
+
+## Security & Error Masking Invariants (HARNESS-002)
+
+- **Маскирование cURL ошибок в шлюзе заказов:** В публичных PHP API-эндпоинтах (`public/api/order/index.php`) запрещено возвращать необработанную системную переменную `$curlError` клиенту. Системную ошибку логировать через `error_log()`, а клиенту возвращать обобщенное безопасное сообщение об ошибке, предотвращая раскрытие внутренних IP, DNS и сетевой топологии.
+- **Изоляция секретов в .gitignore:** Локальные конфигурации (`config.php`, `lead-config.php`, `*.local`) обязаны быть зафиксированы в `.gitignore`.
