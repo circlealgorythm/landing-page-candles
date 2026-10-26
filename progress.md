@@ -14,6 +14,19 @@
 
 ## Сессионный журнал подпроекта
 
+### Сессия: 2026-10-26 | Устранение мобильного распирания (iOS Auto-Zoom) и нормализация WebGL огня (STD-017)
+* **Контекст:** Обращение пользователя о распирании верстки вправо-влево после открытия/закрытия модалки и о срезах огня на первых трех блоках страницы.
+* **Первопричина:** 
+  1. В `pricing-section.tsx` стоял `autoFocus`, а инпуты имели `text-sm` (14px). WebKit iOS Safari при фокусе принудительно зумировал страницу, ломая вьюпорт и не возвращая исходный масштаб при закрытии модалки. В `about-section.tsx` отсутствовал `overflow-hidden`.
+  2. Слой `FlameBorders` находился на `z-0`, из-за чего фоновые арт-картинки с градиентными масками (`maskImage`) в секциях 1 (Hero), 2 (Uniqueness), 3 (Program) горизонтально срезали пламя.
+* **Выполнено:**
+  1. В `globals.css` зафиксирован `font-size: 16px !important` для всех инпутов на экранах `< 768px`. В `pricing-section.tsx` удален `autoFocus`, добавлен сброс смещения `window.scrollTo({ left: 0, top: window.scrollY, behavior: 'instant' })`.
+  2. В `about-section.tsx` добавлен `overflow-hidden`, в `globals.css` и `site-shell.tsx` заменен `overflow-x: clip` на `overflow-x: hidden; max-width: 100vw;`.
+  3. В `flame-borders.tsx` холст огня переведен на `z-20` (поверх фоновых арт-слоев секций, но под модалками `z-[100]`), ширина пламени жестко ограничена адаптивными боковыми полями контейнера (12px mobile, 18px tablet, 24px-44px desktop), исключая касание карточек.
+* **Доказательство (Evidence):**
+  - Полная верификация: `pwsh scripts/verify.ps1 -Subproject landing-candles` (lint 0 ошибок, typecheck пройден, next build SSG 5/5 страниц сгенерировано за 19.64s).
+  - Git: коммиты `09a6a8b`, `6d41886`, `dafb949` запушены в `main`.
+
 ### Сессия: 2026-10-26 | Фича 4: Безопасность шлюза заказов и защита от утечки секретов (VULN-06)
 * **Контекст:** Реализация Фичи 4 комплексного плана устранения уязвимостей безопасности онлайн-школы AisuKam по стандартам L4 Meta-Harness.
 * **Первопричина:** При сбое сетевого запроса к GetCourse в \public/api/order/index.php\ в ответ клиенту выводилась необработанная строка \\, раскрывающая детали сетевого окружения. В \.gitignore\ отсутствовали правила для локальных конфигураций.
@@ -74,3 +87,5 @@
 - **2026-10-26 03:28** | fix(candles): prevent iOS modal auto-zoom overflow and elevate flame borders to z-20
 
 - **2026-10-26 03:29** | docs(candles): document iOS Safari input zoom and flame border containment invariants
+
+- **2026-10-26 03:36** | fix(candles): eliminate mobile zoom overflow and contain flame borders to margins
