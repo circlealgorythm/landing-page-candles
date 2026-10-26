@@ -254,7 +254,7 @@ export function FlameBorders() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-40 h-full w-full select-none"
+      className="flame-borders-canvas pointer-events-none fixed inset-0 z-40 h-full w-full select-none"
     />
   );
 }

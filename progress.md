@@ -100,3 +100,10 @@
 
 
 - **2026-10-26 03:46** | fix(candles): stabilize modal viewport and prevent flame clipping
+
+### Сессия: 2026-10-26 | Устранение чёрного прямоугольника на iPhone
+* **Контекст:** На первом экране iPhone пользователь заметил прямоугольную чёрную область поверх фонового оформления.
+* **Выполнено:** Для прозрачного WebGL-холста огня добавлен `mix-blend-mode: screen`, ограниченный узкими экранами WebKit через `@supports (-webkit-touch-callout: none)`. Стиль не затрагивает прочие браузеры и десктопы.
+* **Доказательство (Evidence):** `npm run lint`, `npm run typecheck`, `npm run build` и `git diff --check` завершились с кодом 0. На локальном мобильном viewport в Chromium страница визуально без артефактов; iPhone WebKit в этой среде не доступен для прямого воспроизведения, поэтому проверка опубликованного результата на iPhone остаётся необходимой.
+
+- **2026-10-26 14:47** | fix(candles): remove iPhone WebGL black overlay
