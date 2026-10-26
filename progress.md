@@ -72,3 +72,5 @@
 - **2026-10-26 03:21** | fix(candles): resolve mobile overflow and constrain desktop flame borders to margins
 
 - **2026-10-26 03:28** | fix(candles): prevent iOS modal auto-zoom overflow and elevate flame borders to z-20
+
+- **2026-10-26 03:29** | docs(candles): document iOS Safari input zoom and flame border containment invariants

@@ -52,6 +52,8 @@ Before handing work off, review `git diff` and `git status`; report the changed 
   - **Защита от touch-скролла на iOS/Android:** активный слушатель `touchmove` (`{ passive: false }`) с вызовом `e.preventDefault()`, если жест совершен вне скроллируемой области (`!target?.closest("[data-modal-scrollable]")`).
   - **Карточка формы:** `max-h-[min(90dvh,44rem)] overflow-y-auto overscroll-contain touch-pan-y` — скроллится строго внутри себя при нехватке высоты, никогда не передавая импульс скролла родительскому документу.
   - **Оверлей:** `fixed inset-0 overflow-hidden touch-none overscroll-contain`.
+  - **Защита от авто-зума iOS Safari (Input Zoom Prevention):** Инпуты (`input`, `textarea`, `select`) на экранах `< 768px` обязаны иметь `font-size: 16px !important` (`text-base sm:text-sm`). При меньшем размере Safari принудительно масштабирует вьюпорт при вызове клавиатуры, расширяя страницу и ломая верстку. Запрещен атрибут `autoFocus` в модалках. При закрытии модалки обязателен сброс `window.scrollTo({ left: 0, top: window.scrollY, behavior: 'instant' })`.
+  - **Flame Borders Z-Index & Margins Containment:** Слой WebGL пламени (`FlameBorders`) обязан иметь `fixed inset-0 z-20`, чтобы фоновые слои секций с масками (`maskImage`) и картинками (`2.webp`, `deep.webp`, `candles-study.webp`) не срезали языки пламени. Ширина пламени `reachCssPx` строго ограничивается адаптивными боковыми полями контейнера (12px на мобилках, 18px на планшетах, 24px на 1024-1280px, 34-44px на десктопах), гарантируя, что пламя никогда не касается контентных карточек и не заходит под них.
 
 
 ## Security & Error Masking Invariants (HARNESS-002)
