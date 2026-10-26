@@ -173,11 +173,24 @@ export function FlameBorders() {
       gl.uniform2f(resLoc, canvas.width, canvas.height);
 
       // Безопасная ширина пламени:
-      // На мобильных (< 768px): огонь 14 CSS px (аккуратно внутри 16px бокового поля),
-      // чтобы пламя не перекрывало текст и карточки.
-      // На десктопе: пламя держится строго в пределах 40-48 CSS px от края экрана,
-      // оставаясь строго в свободных боковых полях и никогда не заходя под карточки модулей.
-      const reachCssPx = width < 768 ? 14.0 : Math.min(48.0, Math.max(32.0, (width - 1200.0) * 0.12 + 32.0));
+      // Строго рассчитывается под адаптивные боковые поля сетки (отступ контента от края экрана):
+      // - На мобильных (< 768px): 12 CSS px (отступ 16px, пламя никогда не касается текста и карточек).
+      // - На планшетах (768–1023px): 18 CSS px (отступ 24px, пламя свободно пылает на полях).
+      // - На средних экранах (1024–1279px): 24 CSS px (отступ 32px, не заходит под карточки).
+      // - На десктопах (1280–1535px): 34 CSS px (отступ от 80px, пламя в свободной зоне).
+      // - На широких экранах (>= 1536px): 44 CSS px (отступ от 180px).
+      let reachCssPx = 12.0;
+      if (width >= 1536) {
+        reachCssPx = 44.0;
+      } else if (width >= 1280) {
+        reachCssPx = 34.0;
+      } else if (width >= 1024) {
+        reachCssPx = 24.0;
+      } else if (width >= 768) {
+        reachCssPx = 18.0;
+      } else {
+        reachCssPx = 12.0;
+      }
       gl.uniform1f(maxReachLoc, reachCssPx * dpr);
     };
 
@@ -241,7 +254,7 @@ export function FlameBorders() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 h-full w-full select-none"
+      className="pointer-events-none fixed inset-0 z-20 h-full w-full select-none"
     />
   );
 }

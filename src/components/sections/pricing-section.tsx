@@ -72,6 +72,9 @@ export function PricingSection() {
       }
       window.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("touchmove", handleTouchMove);
+      if (typeof window !== "undefined") {
+        window.scrollTo({ left: 0, top: window.scrollY, behavior: "instant" as ScrollBehavior });
+      }
     };
   }, [isModalOpen]);
 
@@ -349,11 +352,10 @@ export function PricingSection() {
                   id="user-name"
                   type="text"
                   required
-                  autoFocus
                   placeholder="Ваше имя"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-sm text-[rgba(255,240,225,0.98)] placeholder:text-stone-500 transition-[border-color,background-color] duration-150 hover:border-white/20 focus:border-orange-300/70 focus:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-orange-400/25"
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-base sm:text-sm text-[rgba(255,240,225,0.98)] placeholder:text-stone-500 transition-[border-color,background-color] duration-150 hover:border-white/20 focus:border-orange-300/70 focus:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-orange-400/25"
                 />
               </div>
 
@@ -372,7 +374,7 @@ export function PricingSection() {
                   placeholder="+7 (___) ___-__-__"
                   value={phone}
                   onChange={handlePhoneChange}
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-sm text-[rgba(255,240,225,0.98)] placeholder:text-stone-500 transition-[border-color,background-color] duration-150 hover:border-white/20 focus:border-orange-300/70 focus:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-orange-400/25"
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-base sm:text-sm text-[rgba(255,240,225,0.98)] placeholder:text-stone-500 transition-[border-color,background-color] duration-150 hover:border-white/20 focus:border-orange-300/70 focus:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-orange-400/25"
                 />
               </div>
 
@@ -391,7 +393,7 @@ export function PricingSection() {
                   placeholder="name@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-sm text-[rgba(255,240,225,0.98)] placeholder:text-stone-500 transition-[border-color,background-color] duration-150 hover:border-white/20 focus:border-orange-300/70 focus:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-orange-400/25"
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5 text-base sm:text-sm text-[rgba(255,240,225,0.98)] placeholder:text-stone-500 transition-[border-color,background-color] duration-150 hover:border-white/20 focus:border-orange-300/70 focus:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-orange-400/25"
                 />
               </div>
 

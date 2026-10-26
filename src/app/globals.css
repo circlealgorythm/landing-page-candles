@@ -78,6 +78,20 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* Предотвращение принудительного авто-зума и распирания вьюпорта в iOS Safari при фокусе на полях ввода */
+  @media screen and (max-width: 767px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="search"],
+    input[type="password"],
+    input[type="number"],
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
+
   h1,
   h2,
   h3,

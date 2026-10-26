@@ -70,3 +70,5 @@
 - **2026-10-26 02:17** | security(candles): mask curl error details and add gitignore
 
 - **2026-10-26 03:21** | fix(candles): resolve mobile overflow and constrain desktop flame borders to margins
+
+- **2026-10-26 03:28** | fix(candles): prevent iOS modal auto-zoom overflow and elevate flame borders to z-20
