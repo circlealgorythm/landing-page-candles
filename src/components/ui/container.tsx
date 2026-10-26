@@ -6,5 +6,5 @@ type ContainerProps = Readonly<{
 }>;
 
 export function Container({ children, className }: ContainerProps) {
-  return <div className={cn("container w-full", className)}>{children}</div>;
+  return <div className={cn("container w-full max-w-full", className)}>{children}</div>;
 }

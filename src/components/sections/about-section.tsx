@@ -6,7 +6,7 @@ import { Container, Reveal } from "@/components/ui";
 
 export function AboutSection() {
   return (
-    <section id="about" aria-labelledby="about-title" className="relative border-b border-white/10 py-14 sm:py-20 lg:py-32">
+    <section id="about" aria-labelledby="about-title" className="relative overflow-hidden border-b border-white/10 py-14 sm:py-20 lg:py-32">
       <Reveal>
         <Container>
           <article className="relative overflow-hidden rounded-2xl border border-[rgba(245,197,146,0.14)] bg-[linear-gradient(180deg,rgba(29,27,39,0.98),rgba(21,22,35,0.98))] px-4 py-6 shadow-[0_30px_100px_rgba(4,8,20,0.34)] sm:px-8 sm:py-8 lg:px-12 lg:py-12">

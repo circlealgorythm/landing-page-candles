@@ -7,7 +7,7 @@ type SiteShellProps = Readonly<{
 
 export function SiteShell({ children }: SiteShellProps) {
   return (
-    <div className="relative flex min-h-screen flex-col overflow-x-clip w-full max-w-full bg-background overscroll-x-none">
+    <div className="relative flex min-h-screen flex-col overflow-x-hidden w-full max-w-full bg-background overscroll-x-none">
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="section-dust opacity-60" />
         <div className="absolute inset-x-0 top-0 h-[40rem] bg-[radial-gradient(circle_at_top,rgba(255,190,120,0.22),transparent_44%)]" />
@@ -19,7 +19,7 @@ export function SiteShell({ children }: SiteShellProps) {
         <div className="absolute inset-x-0 bottom-0 h-[30rem] bg-[linear-gradient(180deg,transparent,rgba(6,8,16,0.92))]" />
       </div>
       <FlameBorders />
-      <div className="relative z-10 flex min-h-screen flex-col w-full max-w-full overflow-x-clip">{children}</div>
+      <div className="relative z-10 flex min-h-screen flex-col w-full max-w-full overflow-x-hidden">{children}</div>
       <CookieBanner />
     </div>
   );

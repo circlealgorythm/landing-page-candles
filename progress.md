@@ -68,3 +68,5 @@
 - **2026-10-17 13:44** | perf(candles): eliminate scroll delay and optimize mobile GPU compositing
 
 - **2026-10-26 02:17** | security(candles): mask curl error details and add gitignore
+
+- **2026-10-26 03:21** | fix(candles): resolve mobile overflow and constrain desktop flame borders to margins

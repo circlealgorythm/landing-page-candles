@@ -12,7 +12,7 @@ import {
 export default function HomePage() {
   return (
     <>
-      <main className="relative flex-1 w-full max-w-full overflow-x-clip">
+      <main className="relative flex-1 w-full max-w-full overflow-x-hidden">
         <HeroSection />
         <UniquenessSection />
         <ProgramSection />

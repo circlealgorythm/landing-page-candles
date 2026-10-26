@@ -13,6 +13,7 @@ const FRAGMENT_SHADER_SOURCE = `
 precision highp float;
 uniform vec2 u_resolution;
 uniform float u_time;
+uniform float u_max_reach_px;
 
 float hash(vec2 p) {
   p = fract(p * vec2(123.34, 456.21));
@@ -44,24 +45,22 @@ float fbm(vec2 p) {
 }
 
 void main() {
-  vec2 uv = gl_FragCoord.xy / u_resolution;
-  float dLeft = uv.x;
-  float dRight = 1.0 - uv.x;
-  float sideDist = min(dLeft, dRight);
+  // Расстояние в физических пикселях от левого или правого края экрана
+  float pixelDist = min(gl_FragCoord.x, u_resolution.x - gl_FragCoord.x);
 
-  // Боковая зона огня: 12% на мобильных, 20% на десктопе. Центр экрана 100% свободен.
-  float maxReach = u_resolution.x < 768.0 ? 0.12 : 0.20;
-  if (sideDist > maxReach) {
+  if (pixelDist > u_max_reach_px) {
     gl_FragColor = vec4(0.0);
     return;
   }
 
-  // Нормализованная координата от кромки экрана к центру
-  float xCoord = sideDist / maxReach;
+  vec2 uv = gl_FragCoord.xy / u_resolution;
+
+  // Нормализованная координата от кромки экрана к центру (0.0 на кромке, 1.0 на внешней границе)
+  float xCoord = pixelDist / u_max_reach_px;
 
   // Плавное, неспешное медитативное колыхание пламени свечи
   float t = u_time * 0.22;
-  vec2 p = vec2(xCoord * 3.4, uv.y * 3.6 - t);
+  vec2 p = vec2(xCoord * 3.0, uv.y * 3.8 - t);
 
   // Мягкая вихревая турбулентность пламени
   float q = fbm(p);
@@ -71,13 +70,13 @@ void main() {
   );
   float f = fbm(p + r * 1.15);
 
-  // Форма затухания языков пламени в сторону центра
+  // Форма затухания языков пламени в сторону центра (плавно тает без резких срезов)
   float flameMask = 1.0 - smoothstep(0.0, 1.0, xCoord);
-  flameMask = pow(flameMask, 1.4);
+  flameMask = pow(flameMask, 1.5);
 
   // Интенсивность языков огня
   float flame = f * flameMask;
-  flame = smoothstep(0.12, 0.78, flame);
+  flame = smoothstep(0.10, 0.78, flame);
 
   if (flame < 0.005) {
     gl_FragColor = vec4(0.0);
@@ -153,6 +152,7 @@ export function FlameBorders() {
 
     const resLoc = gl.getUniformLocation(program, "u_resolution");
     const timeLoc = gl.getUniformLocation(program, "u_time");
+    const maxReachLoc = gl.getUniformLocation(program, "u_max_reach_px");
 
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
@@ -171,6 +171,14 @@ export function FlameBorders() {
       canvas.height = Math.floor(height * dpr);
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform2f(resLoc, canvas.width, canvas.height);
+
+      // Безопасная ширина пламени:
+      // На мобильных (< 768px): огонь 14 CSS px (аккуратно внутри 16px бокового поля),
+      // чтобы пламя не перекрывало текст и карточки.
+      // На десктопе: пламя держится строго в пределах 40-48 CSS px от края экрана,
+      // оставаясь строго в свободных боковых полях и никогда не заходя под карточки модулей.
+      const reachCssPx = width < 768 ? 14.0 : Math.min(48.0, Math.max(32.0, (width - 1200.0) * 0.12 + 32.0));
+      gl.uniform1f(maxReachLoc, reachCssPx * dpr);
     };
 
     handleResize();
