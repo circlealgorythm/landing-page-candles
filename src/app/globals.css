@@ -21,6 +21,7 @@
     -webkit-text-size-adjust: 100%;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 141, 44, 0.38) rgba(9, 8, 17, 0.95);
+    scrollbar-gutter: stable;
   }
 
   ::-webkit-scrollbar {

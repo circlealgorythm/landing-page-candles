@@ -1,5 +1,4 @@
 import { CookieBanner } from "./cookie-banner";
-import { FlameBorders } from "./flame-borders";
 
 type SiteShellProps = Readonly<{
   children: React.ReactNode;
@@ -18,7 +17,6 @@ export function SiteShell({ children }: SiteShellProps) {
         <div className="ritual-ring left-1/2 top-24 h-[26rem] w-[26rem] -translate-x-1/2 opacity-35" />
         <div className="absolute inset-x-0 bottom-0 h-[30rem] bg-[linear-gradient(180deg,transparent,rgba(6,8,16,0.92))]" />
       </div>
-      <FlameBorders />
       <div className="relative z-10 flex min-h-screen flex-col w-full max-w-full overflow-x-hidden">{children}</div>
       <CookieBanner />
     </div>

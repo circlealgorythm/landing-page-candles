@@ -36,12 +36,13 @@ export function PricingSection() {
     const originalBodyOverflow = document.body.style.overflow;
     const originalHtmlOverflow = document.documentElement.style.overflow;
     const originalBodyTouchAction = document.body.style.touchAction;
+    const mainEl = document.querySelector("main");
+    const wasMainInert = mainEl?.hasAttribute("inert") ?? false;
 
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
     document.body.style.touchAction = "none";
 
-    const mainEl = document.querySelector("main");
     if (mainEl) {
       mainEl.setAttribute("inert", "");
     }
@@ -67,7 +68,7 @@ export function PricingSection() {
       document.body.style.overflow = originalBodyOverflow;
       document.documentElement.style.overflow = originalHtmlOverflow;
       document.body.style.touchAction = originalBodyTouchAction;
-      if (mainEl) {
+      if (mainEl && !wasMainInert) {
         mainEl.removeAttribute("inert");
       }
       window.removeEventListener("keydown", handleKeyDown);

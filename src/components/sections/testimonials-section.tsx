@@ -111,17 +111,49 @@ export function TestimonialsSection() {
     };
   }, []);
 
-  // Keyboard navigation for Lightbox & body scroll lock with inert support
+  const isLightboxOpen = lightboxIndex !== null;
+
+  // Keep the page lock active while the lightbox is open, including when its image changes.
   useEffect(() => {
-    if (lightboxIndex === null) return;
+    if (!isLightboxOpen) return;
 
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalBodyTouchAction = document.body.style.touchAction;
     const mainEl = document.querySelector("main");
+    const wasMainInert = mainEl?.hasAttribute("inert") ?? false;
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+
     if (mainEl) {
       mainEl.setAttribute("inert", "");
     }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target?.closest("[data-modal-scrollable]")) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.touchAction = originalBodyTouchAction;
+      if (mainEl && !wasMainInert) {
+        mainEl.removeAttribute("inert");
+      }
+      document.removeEventListener("touchmove", handleTouchMove);
+      window.scrollTo({ left: 0, top: window.scrollY, behavior: "instant" as ScrollBehavior });
+    };
+  }, [isLightboxOpen]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -138,14 +170,7 @@ export function TestimonialsSection() {
     };
 
     window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = originalOverflow;
-      if (mainEl) {
-        mainEl.removeAttribute("inert");
-      }
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxIndex]);
 
   return (
