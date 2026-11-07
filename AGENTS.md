@@ -2,6 +2,7 @@
 
 > **Экосистема:** Школа AisuKam (`candles.aisukam.ru`)  
 > **Стек:** Next.js 14 App Router, React 18, TypeScript, Tailwind CSS, ESLint, npm  
+> **Инвариант нулевого шага (STD-020):** Перед взятием любой задачи агент ОБЯЗАН выполнить git pull --autostash --rebase origin <branch> (или python3 scripts/sync-ecosystem.py в корне). Запрещено менять код без предварительной синхронизации с GitHub!
 > **Сквозные стандарты школы:** Перед реализацией общих UI/UX (модалки, скроллбары) или аналитики сверяться с [.harness/lessons.md](file:///./.harness/lessons.md).  
 > **Локальный журнал прогресса:** [progress.md](file:///./projects/landing-candles/progress.md)
 
