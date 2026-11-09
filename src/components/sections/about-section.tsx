@@ -43,8 +43,8 @@ export function AboutSection() {
 
               <div className="relative min-h-[18rem] bg-transparent sm:min-h-[26rem] lg:min-h-[44rem]">
                 <div className="absolute inset-0 pointer-events-none">
-                  <div className="absolute right-[8%] top-[14%] h-[56%] w-[56%] rounded-full bg-[radial-gradient(circle,rgba(255,151,73,0.22)_0%,rgba(255,151,73,0.1)_32%,rgba(255,151,73,0.03)_58%,transparent_74%)] blur-[14px]" />
-                  <div className="absolute bottom-[-2%] right-[-2%] h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(255,152,77,0.42)_0%,rgba(255,152,77,0.16)_34%,transparent_72%)] blur-[20px]" />
+                  <div className="mobile-artifact-filter absolute right-[8%] top-[14%] h-[56%] w-[56%] rounded-full bg-[radial-gradient(circle,rgba(255,151,73,0.22)_0%,rgba(255,151,73,0.1)_32%,rgba(255,151,73,0.03)_58%,transparent_74%)] blur-[14px]" />
+                  <div className="mobile-artifact-filter absolute bottom-[-2%] right-[-2%] h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(255,152,77,0.42)_0%,rgba(255,152,77,0.16)_34%,transparent_72%)] blur-[20px]" />
                   <div className="absolute inset-y-[8%] right-[0%] w-[92%] opacity-80">
                     <AboutConstellation />
                   </div>
@@ -56,7 +56,7 @@ export function AboutSection() {
                     alt="Айсу Кам, практик и преподаватель по работе со свечами - жезлами"
                     fill
                     sizes="(min-width: 1024px) 42vw, (min-width: 640px) 60vw, 90vw"
-                    className="object-contain object-center lg:object-[72%_center] brightness-[0.97] contrast-[1.01] saturate-[0.9] [filter:drop-shadow(0_18px_54px_rgba(10,18,34,0.18))_drop-shadow(0_0_34px_rgba(255,147,68,0.18))]"
+                    className="mobile-artifact-filter object-contain object-center lg:object-[72%_center] brightness-[0.97] contrast-[1.01] saturate-[0.9] [filter:drop-shadow(0_18px_54px_rgba(10,18,34,0.18))_drop-shadow(0_0_34px_rgba(255,147,68,0.18))]"
                     priority
                   />
                 </div>

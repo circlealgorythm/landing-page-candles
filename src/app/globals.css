@@ -107,6 +107,10 @@
 }
 
 @media screen and (max-width: 767px) {
+  .mobile-artifact-filter {
+    filter: none !important;
+  }
+
   @supports (-webkit-touch-callout: none) {
     .flame-borders-canvas {
       mix-blend-mode: screen;
